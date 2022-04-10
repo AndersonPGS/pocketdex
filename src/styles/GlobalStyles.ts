@@ -5,10 +5,14 @@ export default createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow-x: hidden;
   }
   html {
     min-height: 100%;
     background-color: var(--primary);
+  }
+  body {
+    height: 100vh;
   }
   *, button, input {
     border: 0;

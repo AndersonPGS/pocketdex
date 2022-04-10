@@ -24,10 +24,9 @@ export const Menu = styled.div``;
 export const Link = styled.a`
   color: var(--text-primary);
   margin-right: 45px;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: bold;
   text-decoration: none;
-  text-transform: uppercase;
   transition: all 0.3s;
   &:hover {
     text-decoration: underline;
