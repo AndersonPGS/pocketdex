@@ -13,7 +13,7 @@ const Header: React.FC = () => {
           >
             Github
           </Link>
-          <Link href="/about">About</Link>
+          <Link href="https://github.com/andersonpgs/pocketdex">API</Link>
         </Menu>
       </Wrapper>
     </Container>
