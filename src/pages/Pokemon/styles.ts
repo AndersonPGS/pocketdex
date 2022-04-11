@@ -101,7 +101,7 @@ export const PokemonImage = styled.div`
   .data {
     width: 100%;
     height: 100px;
-    padding: 10px 0 20px;
+    padding: 10px 0;
     position: absolute;
     bottom: -110px;
     display: flex;
