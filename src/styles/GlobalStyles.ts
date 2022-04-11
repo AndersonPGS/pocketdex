@@ -7,12 +7,12 @@ export default createGlobalStyle`
     box-sizing: border-box;
     overflow-x: hidden;
   }
-  html {
-    min-height: 100%;
-    background-color: var(--primary);
-  }
   body {
+    background-color: var(--primary);
     height: 100vh;
+  }
+  #root {
+    height: 100%;
   }
   *, button, input {
     border: 0;
