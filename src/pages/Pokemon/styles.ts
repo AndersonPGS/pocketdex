@@ -74,6 +74,9 @@ export const Title = styled.div`
 
 export const PokemonProfile = styled.div`
   padding: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
 `;
 
@@ -142,6 +145,78 @@ export const PokemonImage = styled.div`
     .data {
       position: absolute;
       bottom: 0px;
+    }
+  }
+`;
+
+export const PokemonData = styled.div`
+  height: 340px;
+  width: 70%;
+  transform: translateX(-5px);
+  display: flex;
+  justify-content: space-evenly;
+  background: linear-gradient(
+    270deg,
+    rgba(59, 55, 72, 0.6),
+    rgba(59, 55, 72, 0)
+  );
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 0px 36px 36px 0px;
+
+  .info {
+    margin: 25px;
+    h1 {
+      padding: 0;
+      margin: 0;
+      margin-bottom: 5px;
+      color: var(--text-secondary);
+      font-size: 1.7rem;
+    }
+
+    p {
+      color: var(--text-primary);
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+  }
+
+  .stats {
+    margin: 25px;
+    width: 50%;
+    h1 {
+      padding: 0;
+      margin: 0;
+      margin-bottom: 5px;
+      color: var(--text-secondary);
+      font-size: 1.7rem;
+    }
+
+    .stat {
+      width: 100%;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      p {
+        color: var(--text-primary);
+        font-size: 1.4rem;
+        font-weight: 600;
+      }
+
+      .progress {
+        background: rgba(196, 196, 196, 0.3);
+        width: 70%;
+        height: 22px;
+        border-radius: 25px;
+
+        .bar {
+          background: var(--green);
+          width: 80%;
+          height: 100%;
+          border-radius: 25px;
+        }
+      }
     }
   }
 `;

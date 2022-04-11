@@ -2,6 +2,7 @@ import React from "react";
 import arrow from "../../images/arrow.svg";
 import {
   Container,
+  PokemonData,
   PokemonImage,
   PokemonProfile,
   Title,
@@ -11,7 +12,7 @@ import {
 const Pokemon: React.FC = () => {
   return (
     <Container>
-      <div className="blob1"></div>
+      <div className="blob1" />
       <Wrapper>
         <Title>
           <a href="/">
@@ -40,6 +41,62 @@ const Pokemon: React.FC = () => {
               </div>
             </div>
           </PokemonImage>
+          <PokemonData>
+            <div className="infos">
+              <div className="info">
+                <h1>Name</h1>
+                <p>Pikachu</p>
+              </div>
+              <div className="info">
+                <h1>Type</h1>
+                <p>Eletric</p>
+              </div>
+              <div className="info">
+                <h1>Abilities</h1>
+                <p>Static</p>
+                <p>Lightning Rod</p>
+              </div>
+            </div>
+            <div className="stats">
+              <h1>Stats</h1>
+              <div className="stat">
+                <p>HP</p>
+                <div className="progress">
+                  <div className="bar" />
+                </div>
+              </div>
+              <div className="stat">
+                <p>Attack</p>
+                <div className="progress">
+                  <div className="bar" />
+                </div>
+              </div>
+              <div className="stat">
+                <p>Defense</p>
+                <div className="progress">
+                  <div className="bar" />
+                </div>
+              </div>
+              <div className="stat">
+                <p>Sp. Atk</p>
+                <div className="progress">
+                  <div className="bar" />
+                </div>
+              </div>
+              <div className="stat">
+                <p>Sp. Def</p>
+                <div className="progress">
+                  <div className="bar" />
+                </div>
+              </div>
+              <div className="stat">
+                <p>Speed</p>
+                <div className="progress">
+                  <div className="bar" />
+                </div>
+              </div>
+            </div>
+          </PokemonData>
         </PokemonProfile>
       </Wrapper>
     </Container>

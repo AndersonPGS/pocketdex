@@ -28,7 +28,6 @@ export default createGlobalStyle`
     --primary: #1F1D2B;
     --text-primary: #C5C1D2;
     --text-secondary: #969599;
-    --bar-background: #C4C4C4;
     --purple: #9750E8;
     --red: #E25E5E;
     --yellow: #D8E25E;
