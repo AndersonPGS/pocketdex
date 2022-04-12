@@ -70,7 +70,7 @@ const Pokemon: React.FC = () => {
             <img src={arrow} alt="previous page" />
           </a>
           <h1>
-            {data?.name}
+            {data?.name.replace("-", " ")}
             <span title="ID">{data?.id}</span>
           </h1>
         </Title>
@@ -95,7 +95,7 @@ const Pokemon: React.FC = () => {
             <div className="infos">
               <div className="info">
                 <h1>Name</h1>
-                <p>{data?.name}</p>
+                <p>{data?.name.replace("-", " ")}</p>
               </div>
               <div className="info">
                 <h1>Type</h1>
@@ -113,10 +113,12 @@ const Pokemon: React.FC = () => {
                       title="Hidden Abilitie"
                       className="hidden"
                     >
-                      {abilitie.ability.name}
+                      {abilitie.ability.name.replace("-", " ")}
                     </p>
                   ) : (
-                    <p key={abilitie.ability.name}>{abilitie.ability.name}</p>
+                    <p key={abilitie.ability.name}>
+                      {abilitie.ability.name.replace("-", " ")}
+                    </p>
                   )
                 )}
               </div>

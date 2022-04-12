@@ -240,9 +240,9 @@ export const Stat = styled.div<StatProps>`
       border-radius: 25px;
       background: var(--red);
       background: ${(props) =>
-        props.percentage && props.percentage >= 30 ? "var(--orange)" : ""};
+        props.percentage && props.percentage >= 40 ? "var(--orange)" : ""};
       background: ${(props) =>
-        props.percentage && props.percentage >= 40 ? "var(--yellow)" : ""};
+        props.percentage && props.percentage >= 50 ? "var(--yellow)" : ""};
       background: ${(props) =>
         props.percentage && props.percentage >= 70 ? "var(--green)" : ""};
     }
