@@ -8,61 +8,86 @@ import {
   PokemonData,
   PokemonImage,
   PokemonProfile,
+  Stat,
   Title,
   Wrapper,
 } from "./styles";
 
-interface PokemonData {
-  name?: string;
-  url?: string;
+interface PokemonTypes {
+  type: {
+    name: string;
+  };
 }
 
-interface APIPokemon {
-  next?: string;
-  previous?: string;
-  error?: string;
-  pokemons?: {
-    results?: PokemonData[];
+interface PokemonSprite {
+  other: {
+    home: {
+      front_default?: string;
+    };
   };
+}
+
+interface PokemonAbilities {
+  ability: {
+    name: string;
+    url: string;
+  };
+  is_hidden: boolean;
+}
+
+interface PokemonStats {
+  base_stat: number;
+  stat: {
+    name: string;
+  };
+}
+
+interface PokemonData {
+  name: string;
+  id: number;
+  height: number;
+  weight: number;
+  types: PokemonTypes[];
+  abilities: PokemonAbilities[];
+  sprites: PokemonSprite;
+  stats: PokemonStats[];
 }
 
 const Pokemon: React.FC = () => {
   const { id } = useParams();
 
-  const { data, isFetching } = useQuery("user", async () => {
+  const { data, isFetching } = useQuery<PokemonData>("user", async () => {
     const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
     return response.data;
   });
   return (
     <Container>
-      {isFetching && <p>Carregando</p>}
-      {console.log(data)}
       <div className="blob1" />
       <Wrapper>
+        {isFetching && <p className="load">Carregando...</p>}
         <Title>
           <a href="/">
             <img src={arrow} alt="previous page" />
           </a>
           <h1>
-            Pikachu
-            <span>025</span>
+            {data?.name}
+            <span title="ID">{data?.id}</span>
           </h1>
         </Title>
-
         <PokemonProfile>
           <PokemonImage>
             <img
-              src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/25.png"
-              alt="Pikachu"
+              src={data?.sprites.other.home.front_default}
+              alt={data?.name}
             />
             <div className="data">
               <div className="data-fragment">
                 <h1>Height</h1>
-                <p>0.4 m</p>
+                <p>{data && data.height / 10} m</p>
               </div>
               <div className="data-fragment">
                 <h1>Weight</h1>
-                <p>6.0 kg</p>
+                <p>{data && data.weight / 10} kg</p>
               </div>
             </div>
           </PokemonImage>
@@ -70,56 +95,47 @@ const Pokemon: React.FC = () => {
             <div className="infos">
               <div className="info">
                 <h1>Name</h1>
-                <p>Pikachu</p>
+                <p>{data?.name}</p>
               </div>
               <div className="info">
                 <h1>Type</h1>
-                <p>Eletric</p>
+                {data?.types.map((type) => (
+                  <p key={type.type.name}>{type.type.name}</p>
+                ))}
               </div>
               <div className="info">
                 <h1>Abilities</h1>
-                <p>Static</p>
-                <p>Lightning Rod</p>
+
+                {data?.abilities.map((abilitie) =>
+                  abilitie.is_hidden ? (
+                    <p
+                      key={abilitie.ability.name}
+                      title="Hidden Abilitie"
+                      className="hidden"
+                    >
+                      {abilitie.ability.name}
+                    </p>
+                  ) : (
+                    <p key={abilitie.ability.name}>{abilitie.ability.name}</p>
+                  )
+                )}
               </div>
             </div>
             <div className="stats">
               <h1>Stats</h1>
-              <div className="stat">
-                <p>HP</p>
-                <div className="progress">
-                  <div className="bar" />
-                </div>
-              </div>
-              <div className="stat">
-                <p>Attack</p>
-                <div className="progress">
-                  <div className="bar" />
-                </div>
-              </div>
-              <div className="stat">
-                <p>Defense</p>
-                <div className="progress">
-                  <div className="bar" />
-                </div>
-              </div>
-              <div className="stat">
-                <p>Sp. Atk</p>
-                <div className="progress">
-                  <div className="bar" />
-                </div>
-              </div>
-              <div className="stat">
-                <p>Sp. Def</p>
-                <div className="progress">
-                  <div className="bar" />
-                </div>
-              </div>
-              <div className="stat">
-                <p>Speed</p>
-                <div className="progress">
-                  <div className="bar" />
-                </div>
-              </div>
+              {data?.stats.map((stat) => (
+                <Stat percentage={stat.base_stat ?? 0}>
+                  {stat.stat.name === "special-attack" && <p>Sp.Atk</p>}
+                  {stat.stat.name === "special-defense" && <p>Sp.Def</p>}
+                  {stat.stat.name != "special-attack" &&
+                    stat.stat.name != "special-defense" && (
+                      <p>{stat.stat.name}</p>
+                    )}
+                  <div className="progress">
+                    <div className="bar" />
+                  </div>
+                </Stat>
+              ))}
             </div>
           </PokemonData>
         </PokemonProfile>

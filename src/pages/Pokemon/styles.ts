@@ -15,6 +15,11 @@ export const Container = styled.div`
     border-radius: 373px;
     z-index: -999;
   }
+
+  h1,
+  p {
+    text-transform: capitalize;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -94,7 +99,7 @@ export const PokemonImage = styled.div`
   position: relative;
   transition: all 0.3s;
   img {
-    height: 360px;
+    width: 90%;
     position: relative;
     top: 0;
     flex-shrink: 0;
@@ -163,20 +168,31 @@ export const PokemonData = styled.div`
   box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.25);
   border-radius: 0px 36px 36px 0px;
 
-  .info {
-    margin: 25px;
-    h1 {
-      padding: 0;
-      margin: 0;
-      margin-bottom: 5px;
-      color: var(--text-secondary);
-      font-size: 1.7rem;
-    }
+  .infos {
+    margin: 25px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .info {
+      h1 {
+        padding: 0;
+        margin: 0;
+        margin-bottom: 5px;
+        color: var(--text-secondary);
+        font-size: 1.7rem;
+      }
 
-    p {
-      color: var(--text-primary);
-      font-size: 1.4rem;
-      font-weight: 600;
+      p {
+        color: var(--text-primary);
+        font-size: 1.4rem;
+        font-weight: 600;
+      }
+      p.hidden {
+        color: var(--text-primary);
+        opacity: 0.8;
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
     }
   }
 
@@ -190,33 +206,45 @@ export const PokemonData = styled.div`
       color: var(--text-secondary);
       font-size: 1.7rem;
     }
+  }
+`;
 
-    .stat {
-      width: 100%;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+interface StatProps {
+  percentage?: number;
+}
+export const Stat = styled.div<StatProps>`
+  width: 100%;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  white-space: nowrap;
+  overflow: hidden;
 
-      p {
-        color: var(--text-primary);
-        font-size: 1.4rem;
-        font-weight: 600;
-      }
+  p {
+    color: var(--text-primary);
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-overflow: ellipsis;
+  }
 
-      .progress {
-        background: rgba(196, 196, 196, 0.3);
-        width: 70%;
-        height: 22px;
-        border-radius: 25px;
+  .progress {
+    background: rgba(196, 196, 196, 0.3);
+    width: 70%;
+    height: 22px;
+    border-radius: 25px;
 
-        .bar {
-          background: var(--green);
-          width: 80%;
-          height: 100%;
-          border-radius: 25px;
-        }
-      }
+    .bar {
+      width: ${(props) => `${props.percentage}%`};
+      height: 100%;
+      border-radius: 25px;
+      background: var(--red);
+      background: ${(props) =>
+        props.percentage && props.percentage >= 30 ? "var(--orange)" : ""};
+      background: ${(props) =>
+        props.percentage && props.percentage >= 40 ? "var(--yellow)" : ""};
+      background: ${(props) =>
+        props.percentage && props.percentage >= 70 ? "var(--green)" : ""};
     }
   }
 `;
