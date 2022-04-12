@@ -32,6 +32,10 @@ const Home: React.FC = () => {
     async () => {
       const response = await axios.get(url);
       return response.data;
+    },
+    {
+      refetchOnWindowFocus: false,
+      staleTime: 100000,
     }
   );
 

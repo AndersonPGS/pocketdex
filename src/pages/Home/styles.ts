@@ -29,6 +29,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Pokemons = styled.div`
+  min-height: 57vh;
   display: flex;
   padding-top: 10px;
   justify-content: space-evenly;
