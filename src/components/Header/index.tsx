@@ -13,7 +13,9 @@ const Header: React.FC = () => {
           >
             Github
           </Link>
-          <Link href="https://github.com/andersonpgs/pocketdex">API</Link>
+          <Link href="https://pokeapi.co/" target={"_blank"}>
+            API
+          </Link>
         </Menu>
       </Wrapper>
     </Container>
