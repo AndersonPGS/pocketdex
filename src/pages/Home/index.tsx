@@ -66,7 +66,7 @@ const Home: React.FC = () => {
                 pokemon.url && handlePokemonPage(pokemon.url);
               }}
             >
-              <a>{pokemon.name}</a>
+              <a>{pokemon.name?.replace("-", " ")}</a>
             </Pokemon>
           ))}
         </Pokemons>

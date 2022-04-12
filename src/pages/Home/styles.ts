@@ -49,6 +49,7 @@ export const Pokemon = styled.div`
   transition: all 0.3s, background 0.5s;
 
   a {
+    text-transform: capitalize;
     text-decoration: none;
     font-size: 1.2rem;
     text-overflow: ellipsis;
