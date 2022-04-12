@@ -70,7 +70,7 @@ export const Title = styled.div`
     margin-left: 30px;
 
     span {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       font-weight: 200;
       margin-left: 10px;
     }
