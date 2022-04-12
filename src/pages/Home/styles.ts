@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  min-height: calc(100vh - 130px);
+  min-height: calc(100vh - 105px);
   .blob1 {
     position: absolute;
     width: 1153px;
@@ -34,7 +34,7 @@ export const Pokemons = styled.div`
   justify-content: space-evenly;
   flex-wrap: wrap;
 `;
-export const Pokemon = styled.a`
+export const Pokemon = styled.div`
   width: 200px;
   display: flex;
   align-items: center;
@@ -43,10 +43,16 @@ export const Pokemon = styled.a`
   padding: 20px 30px;
   margin: 20px 10px;
   background: rgba(80, 80, 80, 0.2);
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: pointer;
   transition: all 0.3s, background 0.5s;
-  text-decoration: none;
-  font-size: 1.2rem;
-  text-overflow: ellipsis;
+
+  a {
+    text-decoration: none;
+    font-size: 1.2rem;
+    text-overflow: ellipsis;
+  }
 
   &:hover {
     transform: scale(1.1);
@@ -85,6 +91,7 @@ export const PageNavigation = styled.div`
     border-radius: 10px;
     background: #2d2a38;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
     transition: all 0.4s;
 
     img {
@@ -103,6 +110,18 @@ export const PageNavigation = styled.div`
 
     &#next {
       transform: translateX(-5px);
+    }
+
+    &.disable {
+      cursor: default;
+      opacity: 0.8;
+      box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+      &.disable:hover {
+        img {
+          opacity: 0.8;
+        }
+        box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+      }
     }
 
     &:hover {

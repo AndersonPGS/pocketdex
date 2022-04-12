@@ -1,13 +1,10 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  /* position: absolute;
-  bottom: 0;
-  width: 100%; */
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 30px;
+  padding: 18px;
   background-color: var(--primary);
   -webkit-box-shadow: 0px -3px 0px 0px var(--text-secondary);
   -moz-box-shadow: 0px -3px 0px 0px var(--text-secondary);

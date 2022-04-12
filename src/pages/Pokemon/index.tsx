@@ -1,4 +1,7 @@
+import axios from "axios";
 import React from "react";
+import { useQuery } from "react-query";
+import { useParams } from "react-router-dom";
 import arrow from "../../images/arrow.svg";
 import {
   Container,
@@ -9,9 +12,31 @@ import {
   Wrapper,
 } from "./styles";
 
+interface PokemonData {
+  name?: string;
+  url?: string;
+}
+
+interface APIPokemon {
+  next?: string;
+  previous?: string;
+  error?: string;
+  pokemons?: {
+    results?: PokemonData[];
+  };
+}
+
 const Pokemon: React.FC = () => {
+  const { id } = useParams();
+
+  const { data, isFetching } = useQuery("user", async () => {
+    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+    return response.data;
+  });
   return (
     <Container>
+      {isFetching && <p>Carregando</p>}
+      {console.log(data)}
       <div className="blob1" />
       <Wrapper>
         <Title>
