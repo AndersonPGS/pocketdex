@@ -82,9 +82,6 @@ const Pokemon: React.FC = () => {
             <Palette src={data?.sprites.other.home.front_default}>
               {(palette) => {
                 if (!palette.loading && palette.data) {
-                  console.log("-------------------");
-                  console.log(palette);
-                  console.log("-------------------");
                   return (
                     <PokemonImage
                       color1={palette.data.vibrant}

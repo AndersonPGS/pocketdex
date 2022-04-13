@@ -126,7 +126,7 @@ export const PokemonImage = styled.div<IMGProps>`
     background: ${(props) =>
       props.color1
         ? `linear-gradient(-145deg, ${props.color1},  ${props.color2}, ${props.color3})`
-        : "var(--text-secondary)"};
+        : "var(--yellow)"};
     background-size: 180%;
     background-position: top right;
     color: var(--primary);
