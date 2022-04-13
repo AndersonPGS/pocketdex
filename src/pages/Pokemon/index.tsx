@@ -81,10 +81,9 @@ const Pokemon: React.FC = () => {
           {data?.sprites.other.home.front_default && (
             <Palette src={data?.sprites.other.home.front_default}>
               {(palette) => {
-                if (!palette.loading) {
-                  console.log(palette.error);
-                  console.log(palette.data);
-                  console.log(palette.loading);
+                if (!palette.loading && palette.data) {
+                  console.log("-------------------");
+                  console.log(palette);
                   console.log("-------------------");
                   return (
                     <PokemonImage
