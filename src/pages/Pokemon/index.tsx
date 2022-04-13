@@ -78,29 +78,30 @@ const Pokemon: React.FC = () => {
         <PokemonProfile>
           {data?.sprites.other.home.front_default && (
             <Palette src={data?.sprites.other.home.front_default}>
-              {(palette) => (
-                <PokemonImage
-                  color1={palette.data.vibrant}
-                  color2={palette.data.lightVibrant}
-                  color3={palette.data.muted}
-                >
-                  {console.log(palette.data.vibrant)}
-                  <img
-                    src={data?.sprites.other.home.front_default}
-                    alt={data?.name}
-                  />
-                  <div className="data">
-                    <div className="data-fragment">
-                      <h1>Height</h1>
-                      <p>{data && data.height / 10} m</p>
+              {(palette) =>
+                !palette.loading && (
+                  <PokemonImage
+                    color1={palette.data.vibrant}
+                    color2={palette.data.lightVibrant}
+                    color3={palette.data.muted}
+                  >
+                    <img
+                      src={data?.sprites.other.home.front_default}
+                      alt={data?.name}
+                    />
+                    <div className="data">
+                      <div className="data-fragment">
+                        <h1>Height</h1>
+                        <p>{data && data.height / 10} m</p>
+                      </div>
+                      <div className="data-fragment">
+                        <h1>Weight</h1>
+                        <p>{data && data.weight / 10} kg</p>
+                      </div>
                     </div>
-                    <div className="data-fragment">
-                      <h1>Weight</h1>
-                      <p>{data && data.weight / 10} kg</p>
-                    </div>
-                  </div>
-                </PokemonImage>
-              )}
+                  </PokemonImage>
+                )
+              }
             </Palette>
           )}
           <PokemonData>
@@ -138,7 +139,7 @@ const Pokemon: React.FC = () => {
             <div className="stats">
               <h1>Stats</h1>
               {data?.stats.map((stat) => (
-                <Stat percentage={stat.base_stat ?? 0}>
+                <Stat percentage={stat.base_stat ?? 0} key={stat.stat.name}>
                   {stat.stat.name === "special-attack" && <p>Sp.Atk</p>}
                   {stat.stat.name === "special-defense" && <p>Sp.Def</p>}
                   {stat.stat.name != "special-attack" &&
