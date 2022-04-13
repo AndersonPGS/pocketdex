@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  min-height: calc(100vh - 105px);
+  min-height: calc(100vh - 110px);
   .blob1 {
     position: absolute;
     width: 1153px;
