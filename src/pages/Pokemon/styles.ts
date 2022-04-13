@@ -85,7 +85,13 @@ export const PokemonProfile = styled.div`
   overflow: hidden;
 `;
 
-export const PokemonImage = styled.div`
+interface IMGProps {
+  color1?: string;
+  color2?: string;
+  color3?: string;
+}
+
+export const PokemonImage = styled.div<IMGProps>`
   height: 350px;
   width: 300px;
   display: flex;
@@ -115,9 +121,14 @@ export const PokemonImage = styled.div`
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    background-color: var(--yellow);
     border-radius: 20px;
     transition: all 0.3s;
+    background: ${(props) =>
+      props.color1
+        ? `linear-gradient(-145deg, ${props.color1},  ${props.color2}, ${props.color3})`
+        : "var(--yellow)"};
+    background-size: 180%;
+    background-position: top right;
 
     .data-fragment {
       display: flex;

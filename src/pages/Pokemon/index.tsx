@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import Palette from "react-palette";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import arrow from "../../images/arrow.svg";
@@ -75,22 +76,32 @@ const Pokemon: React.FC = () => {
           </h1>
         </Title>
         <PokemonProfile>
-          <PokemonImage>
-            <img
-              src={data?.sprites.other.home.front_default}
-              alt={data?.name}
-            />
-            <div className="data">
-              <div className="data-fragment">
-                <h1>Height</h1>
-                <p>{data && data.height / 10} m</p>
-              </div>
-              <div className="data-fragment">
-                <h1>Weight</h1>
-                <p>{data && data.weight / 10} kg</p>
-              </div>
-            </div>
-          </PokemonImage>
+          {data?.sprites.other.home.front_default && (
+            <Palette src={data?.sprites.other.home.front_default}>
+              {(palette) => (
+                <PokemonImage
+                  color1={palette.data.vibrant}
+                  color2={palette.data.lightVibrant}
+                  color3={palette.data.muted}
+                >
+                  <img
+                    src={data?.sprites.other.home.front_default}
+                    alt={data?.name}
+                  />
+                  <div className="data">
+                    <div className="data-fragment">
+                      <h1>Height</h1>
+                      <p>{data && data.height / 10} m</p>
+                    </div>
+                    <div className="data-fragment">
+                      <h1>Weight</h1>
+                      <p>{data && data.weight / 10} kg</p>
+                    </div>
+                  </div>
+                </PokemonImage>
+              )}
+            </Palette>
+          )}
           <PokemonData>
             <div className="infos">
               <div className="info">
