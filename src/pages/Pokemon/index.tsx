@@ -1,5 +1,5 @@
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import Palette from "react-palette";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
@@ -57,6 +57,8 @@ interface PokemonData {
 const Pokemon: React.FC = () => {
   const { id } = useParams();
 
+  const [colors, setColors] = useState({});
+
   const { data, isFetching } = useQuery<PokemonData>("user", async () => {
     const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
     return response.data;
@@ -78,30 +80,36 @@ const Pokemon: React.FC = () => {
         <PokemonProfile>
           {data?.sprites.other.home.front_default && (
             <Palette src={data?.sprites.other.home.front_default}>
-              {(palette) =>
-                !palette.loading && (
-                  <PokemonImage
-                    color1={palette.data.vibrant}
-                    color2={palette.data.lightVibrant}
-                    color3={palette.data.muted}
-                  >
-                    <img
-                      src={data?.sprites.other.home.front_default}
-                      alt={data?.name}
-                    />
-                    <div className="data">
-                      <div className="data-fragment">
-                        <h1>Height</h1>
-                        <p>{data && data.height / 10} m</p>
+              {(palette) => {
+                if (!palette.loading) {
+                  console.log(palette.error);
+                  console.log(palette.data);
+                  console.log(palette.loading);
+                  console.log("-------------------");
+                  return (
+                    <PokemonImage
+                      color1={palette.data.vibrant}
+                      color2={palette.data.lightVibrant}
+                      color3={palette.data.muted}
+                    >
+                      <img
+                        src={data?.sprites.other.home.front_default}
+                        alt={data?.name}
+                      />
+                      <div className="data">
+                        <div className="data-fragment">
+                          <h1>Height</h1>
+                          <p>{data && data.height / 10} m</p>
+                        </div>
+                        <div className="data-fragment">
+                          <h1>Weight</h1>
+                          <p>{data && data.weight / 10} kg</p>
+                        </div>
                       </div>
-                      <div className="data-fragment">
-                        <h1>Weight</h1>
-                        <p>{data && data.weight / 10} kg</p>
-                      </div>
-                    </div>
-                  </PokemonImage>
-                )
-              }
+                    </PokemonImage>
+                  );
+                }
+              }}
             </Palette>
           )}
           <PokemonData>
