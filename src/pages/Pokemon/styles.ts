@@ -129,6 +129,7 @@ export const PokemonImage = styled.div<IMGProps>`
         : "var(--text-secondary)"};
     background-size: 180%;
     background-position: top right;
+    color: var(--primary);
 
     .data-fragment {
       display: flex;

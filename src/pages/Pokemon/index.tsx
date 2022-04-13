@@ -84,6 +84,7 @@ const Pokemon: React.FC = () => {
                   color2={palette.data.lightVibrant}
                   color3={palette.data.muted}
                 >
+                  {console.log(palette.data.vibrant)}
                   <img
                     src={data?.sprites.other.home.front_default}
                     alt={data?.name}
